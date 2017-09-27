@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   get 'index' => "practice#index"
   post 'index' => 'practice#index'
 
