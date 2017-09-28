@@ -1,3 +1,5 @@
+<div style="font-family: 'Raleway', 'sans-serif'; font-size: 16px;">
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -7,7 +9,8 @@
 
 <p>
   <strong>Author:</strong>
-  <%= @post.author %>
+  <!-- <%= @post.author %> -->
+  <%= @post.user.email %>
 </p>
 
 <p>
@@ -15,5 +18,23 @@
   <%= @post.blog_entry %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+</div>
+
+<!-- before bootstrap -->
+<!-- <%= link_to 'Edit', edit_post_path(@post) %> | -->
+<!-- <%= link_to 'Back', posts_path %> -->
+
+<!-- after adding bootstrap -->
+<%= link_to 'Edit', edit_post_path(@post), class: "btn btn-primary navbar-btn" %>
+<div id="comments">
+  <%= render 'comments/form', comment: @comment %>
+
+  <% @post.comments.each do |comment| %>
+    <p>
+      <%= comment.user.email %> said... <br>
+      <%= comment.comment_entry %>
+    </p>
+  <% end %>
+</div>
+<%= link_to 'Back', posts_path, class: "btn btn-primary navbar-btn" %>
+
